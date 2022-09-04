@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="1269.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo2.PageController">
+   <children>
+      <SplitPane dividerPositions="0.11286503551696922" layoutY="31.0" prefHeight="675.0" prefWidth="1269.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="673.0" prefWidth="148.0" />
+            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1114.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                  <Tab text="Входные данные">
+                     <content>
+                        <AnchorPane layoutX="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" prefHeight="644.0" prefWidth="1145.0">
+                           <children>
+                              <TextField fx:id="fieldPath" layoutX="18.0" layoutY="17.0" prefHeight="25.0" prefWidth="490.0" promptText="Адрес файла с прибора" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="125.0" layoutX="18.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" width="491.0" />
+                              <Text layoutX="24.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество стоянок" />
+                              <Text layoutX="446.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="всего" />
+                              <Pane layoutX="406.0" layoutY="74.0" />
+                              <Accordion layoutX="149.0" layoutY="126.0" />
+                              <Text layoutX="135.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип АМС" />
+                              <MenuButton fx:id="typeAMS" layoutX="297.0" layoutY="201.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="2.0">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="TOWER" />
+                                    <MenuItem mnemonicParsing="false" text="MAST" />
+                                    <MenuItem mnemonicParsing="false" text="METAL_POLE" />
+                                    <MenuItem mnemonicParsing="false" text="REINFORCED_CONCRETE_POLE" />
+                                    <MenuItem mnemonicParsing="false" text="TRIPOD" />
+                                    <MenuItem mnemonicParsing="false" text="DUP" />
+                                 </items>
+                              </MenuButton>
+                              <Button fx:id="apply" layoutX="18.0" layoutY="256.0" mnemonicParsing="false" onAction="#geoBuild" prefHeight="25.0" prefWidth="206.0" text="Применить/Строить" />
+                              <TextArea fx:id="textPanel" layoutX="19.0" layoutY="351.0" prefHeight="160.0" prefWidth="489.0" />
+                              <Label fx:id="fieldTypeAMS" layoutX="217.0" layoutY="201.0" prefHeight="25.0" prefWidth="76.0" text="Label" />
+                              <Hyperlink fx:id="ribs" layoutX="24.0" layoutY="202.0" onAction="#setListRibs" prefHeight="23.0" prefWidth="90.0" text="Рёбра АМС..." textFill="#171717">
+                                 <font>
+                                    <Font name="Times New Roman Bold Italic" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                              <SplitMenuButton fx:id="pointOne" layoutX="46.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                <items>
+                                  <MenuItem fx:id="aOne" mnemonicParsing="false" onAction="#setTextPointOneO" text="1" />
+                                  <MenuItem fx:id="aTwo" mnemonicParsing="false" onAction="#setTextPointOneT" text="2" />
+                                </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="pointTwo" layoutX="121.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                 <items>
+                                    <MenuItem fx:id="bOne" mnemonicParsing="false" onAction="#setTextPointTwoO" text="1" />
+                                    <MenuItem fx:id="bTwo" mnemonicParsing="false" onAction="#setTextPointTwoT" text="2" />
+                                 </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="pointThree" layoutX="200.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                 <items>
+                                    <MenuItem fx:id="cZero" mnemonicParsing="false" onAction="#setTextPointThreeZ" text="0" />
+                                    <MenuItem fx:id="cOne" mnemonicParsing="false" onAction="#setTextPointThreeO" text="1" />
+                                    <MenuItem fx:id="cTwo" mnemonicParsing="false" onAction="#setTextPointThreeT" text="2" />
+                                 </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="pointFour" layoutX="281.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                 <items>
+                                    <MenuItem fx:id="dZero" mnemonicParsing="false" onAction="#setTextPointFourZ" text="0" />
+                                    <MenuItem fx:id="dOne" mnemonicParsing="false" onAction="#setTextPointFourO" text="1" />
+                                    <MenuItem fx:id="dTwo" mnemonicParsing="false" onAction="#setTextPointFourT" text="2" />
+                                 </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="totalPoints" layoutX="436.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="49.0">
+                                 <items>
+                                    <MenuItem fx:id="totalOne" mnemonicParsing="false" onAction="#setTextTotalOne" text="2" />
+                                    <MenuItem fx:id="totalTwo" mnemonicParsing="false" onAction="#setTextTotalTwo" text="3" />
+                                    <MenuItem fx:id="totalThree" mnemonicParsing="false" onAction="#setTextTotalThree" text="4" />
+                                 </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="directionOne" layoutX="46.0" layoutY="79.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                 <items>
+                                    <MenuItem fx:id="litOfPointAOne" mnemonicParsing="false" onAction="#setLetterPointOfFirstDirectionA" text="A" />
+                                    <MenuItem fx:id="litOfPointBOne" mnemonicParsing="false" onAction="#setLetterPointOfFirstDirectionB" text="B" />
+                                    <MenuItem fx:id="litOfPointCOne" mnemonicParsing="false" onAction="#setLetterPointOfFirstDirectionC" text="C" />
+                                    <MenuItem fx:id="litOfPointDOne" mnemonicParsing="false" onAction="#setLetterPointOfFirstDirectionD" text="D" />
+                                 </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="directionTwo" layoutX="121.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                 <items>
+                                    <MenuItem fx:id="litOfPointATwo" mnemonicParsing="false" onAction="#setLetterPointOfSecondDirectionA" text="A" />
+                                    <MenuItem fx:id="litOfPointBTwo" mnemonicParsing="false" onAction="#setLetterPointOfSecondDirectionB" text="B" />
+                                    <MenuItem fx:id="litOfPointCTwo" mnemonicParsing="false" onAction="#setLetterPointOfSecondDirectionC" text="C" />
+                                    <MenuItem fx:id="litOfPointDTwo" mnemonicParsing="false" onAction="#setLetterPointOfSecondDirectionD" text="D" />
+                                 </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="directionThree" layoutX="200.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                 <items>
+                                    <MenuItem fx:id="litOfPointAThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionA" text="A" />
+                                    <MenuItem fx:id="litOfPointBThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionB" text="B" />
+                                    <MenuItem fx:id="litOfPointCThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionC" text="C" />
+                                    <MenuItem fx:id="litOfPointDThree" mnemonicParsing="false" onAction="#setLetterPointOfThirdDirectionD" text="D" />
+                                 </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="directionFour" layoutX="281.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0">
+                                 <items>
+                                    <MenuItem fx:id="litOfPointAFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionA" text="A" />
+                                    <MenuItem fx:id="litOfPointBFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionB" text="B" />
+                                    <MenuItem fx:id="litOfPointCFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionC" text="C" />
+                                    <MenuItem fx:id="litOfPointDFour" mnemonicParsing="false" onAction="#setLetterPointOfFourthDirectionD" text="D" />
+                                 </items>
+                              </SplitMenuButton>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                <Tab text="Схема вертикальности">
+                  <content>
+                    <AnchorPane layoutX="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" prefHeight="729.0" prefWidth="1281.0" style="-fx-background-color: a6a2a2;">
+                           <children>
+                              <LineChart fx:id="chartX" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="-18.0" layoutY="60.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="303.0" title="Ось X">
+                                <xAxis>
+                                  <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis label="Высота" side="LEFT" />
+                                </yAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                                 <effect>
+                                    <ColorAdjust />
+                                 </effect>
+                              </LineChart>
+                              <Button fx:id="ButtonBuild" layoutX="31.0" layoutY="28.0" mnemonicParsing="false" text="Строить" />
+                              <LineChart fx:id="chartY" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="257.0" layoutY="62.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="306.0" title="Ось Y">
+                                 <xAxis>
+                                    <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis label="Высота" side="LEFT" />
+                                 </yAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                                 <effect>
+                                    <ColorAdjust />
+                                 </effect>
+                              </LineChart>
+                              <ListView fx:id="listHeights" layoutX="609.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listVerticalityOnThe_X_Axis" layoutX="668.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listverticalityOnThe_Y_Axis" layoutX="727.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <Text layoutX="665.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Смещение оси ствола опоры от вертикали, мм" textAlignment="CENTER" wrappingWidth="183.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <ListView fx:id="listCalculatedOffset" layoutX="786.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listVerticalityBorder" layoutX="845.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listAngleDisplacementVector" layoutX="904.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <Text layoutX="608.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Высота, м" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="675.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Х&quot;" textAlignment="CENTER" wrappingWidth="45.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="735.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Y&quot;" textAlignment="CENTER" wrappingWidth="42.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="785.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вычисленное" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="846.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Допуск, мм" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="903.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Угол разворота, град" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Схема верт в пане">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: a6a2a2;">
+                           <children>
+                              <LineChart fx:id="chartDeviationInPlan" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutY="71.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="358.0" title="Отклонение в плане, мм">
+                                 <xAxis>
+                                    <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis label="Высота" side="LEFT" />
+                                 </yAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                                 <effect>
+                                    <ColorAdjust />
+                                 </effect>
+                              </LineChart>
+                              <LineChart fx:id="chartVerticalDeviation" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="341.0" layoutY="72.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="247.0" title="Отклонение вертикали, мм">
+                                 <xAxis>
+                                    <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis label="Высота" side="LEFT" />
+                                 </yAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                                 <effect>
+                                    <ColorAdjust />
+                                 </effect>
+                              </LineChart>
+                              <ListView fx:id="listVerticalityBorderTwo" layoutX="918.0" layoutY="112.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listCalculatedOffsetTwo" layoutX="859.0" layoutY="112.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listverticalityOnThe_Y_AxisTwo" layoutX="801.0" layoutY="112.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listVerticalityOnThe_X_AxisTwo" layoutX="743.0" layoutY="112.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listHeightsTwo" layoutX="685.0" layoutY="112.0" prefHeight="473.0" prefWidth="59.0" />
+                              <Text layoutX="684.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Высота, м" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="750.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Х&quot;" textAlignment="CENTER" wrappingWidth="45.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="809.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Y&quot;" textAlignment="CENTER" wrappingWidth="42.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="858.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вычисленное" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="917.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Допуск, мм" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Протокол прям-ти">
+                     <content>
+                        <AnchorPane layoutX="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" prefHeight="729.0" prefWidth="1281.0" style="-fx-background-color: a6a2a2;">
+                           <children>
+                              <ListView fx:id="listHeightsThree" layoutX="54.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listBeltA" layoutX="113.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listBeltB" layoutX="172.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <Text layoutX="53.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Высота, м" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="120.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пояс А" textAlignment="CENTER" wrappingWidth="45.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="180.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пояс B" textAlignment="CENTER" wrappingWidth="42.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="109.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отклонение поясов, мм " textAlignment="CENTER" wrappingWidth="239.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <ListView fx:id="listBeltC" layoutX="231.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listBeltD" layoutX="290.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <ListView fx:id="listStraightnessBorder" layoutX="349.0" layoutY="100.0" prefHeight="473.0" prefWidth="59.0" />
+                              <Text layoutX="289.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пояс D" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="349.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Допуск, мм" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="230.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пояс C" textAlignment="CENTER" wrappingWidth="60.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Схема верт в пане">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: a6a2a2;">
+                           <children>
+                              <LineChart fx:id="chartBeltA" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="-7.0" layoutY="71.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="278.0" title="Пояс &quot;А&quot;, мм">
+                                 <xAxis>
+                                    <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis label="Высота" side="LEFT" />
+                                 </yAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                                 <effect>
+                                    <ColorAdjust />
+                                 </effect>
+                              </LineChart>
+                              <LineChart fx:id="chartBeltB" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="252.0" layoutY="73.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="271.0" title="Пояс &quot;B&quot;, мм">
+                                 <xAxis>
+                                    <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis label="Высота" side="LEFT" />
+                                 </yAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                                 <effect>
+                                    <ColorAdjust />
+                                 </effect>
+                              </LineChart>
+                              <LineChart fx:id="chartBeltC" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="509.0" layoutY="71.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="278.0" title="Пояс &quot;C&quot;, мм">
+                                 <xAxis>
+                                    <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis label="Высота" side="LEFT" />
+                                 </yAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                                 <effect>
+                                    <ColorAdjust />
+                                 </effect>
+                              </LineChart>
+                              <LineChart fx:id="chartBeltD" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="Y_AXIS" cacheShape="false" centerShape="false" layoutX="790.0" layoutY="73.0" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="278.0" title="Пояс &quot;D&quot;, мм">
+                                 <xAxis>
+                                    <NumberAxis label="Смещение" layoutX="-150.0" layoutY="-150.0" prefHeight="45.0" prefWidth="662.0" side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis label="Высота" side="LEFT" />
+                                 </yAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                                 <effect>
+                                    <ColorAdjust />
+                                 </effect>
+                              </LineChart>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+        </items>
+      </SplitPane>
+      <MenuBar layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="1270.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
