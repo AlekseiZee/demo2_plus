@@ -9,6 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.List;
 
 public class HelloApplication extends Application {
@@ -62,6 +63,18 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+    //    launch();
+    	/*LoadDriver.load();
+    	LoadDriver lD = new LoadDriver();
+    	Connection con = lD.getConnection();
+    	lD.findPointById(con, "D");*/
+
+        AngleJDBCDAO angleJDBCDAO = new AngleJDBCDAO();
+        AngleBean pointB = new AngleBean();
+        pointB.setId(27);
+        pointB.setId_AnglePair(14);
+        pointB.setHangle(91.65250);
+        pointB.setVangle(17.85389);
+        angleJDBCDAO.add(pointB);
     }
 }
