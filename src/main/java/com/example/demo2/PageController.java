@@ -1,7 +1,11 @@
 package com.example.demo2;
 
+import static MathGeo.TypeAMS.MAST;
+
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,9 +16,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
-
-import static MathGeo.TypeAMS.MAST;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import persistence.repository.AngleJpaRepository;
 
 
 public class PageController {
@@ -396,6 +405,7 @@ public class PageController {
      * Считываем путь к файлу
      */
     private void getPath() {
+    	System.out.println(AngleJpaRepository.find(1L));
         Pattern pattern = Pattern.compile("([a-zA-Z]\\:)\\\\([\\w-]+\\\\)*\\w([\\w-.])+");
         Matcher matcher = pattern.matcher(fieldPath.getText());
         if (matcher.matches()) {
