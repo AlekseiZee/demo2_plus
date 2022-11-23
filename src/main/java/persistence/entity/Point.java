@@ -24,7 +24,7 @@ public class Point implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private String id;
 
 	private double distance;
 
@@ -44,11 +44,11 @@ public class Point implements Serializable {
 	public Point() {
 	}
 
-	public long getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

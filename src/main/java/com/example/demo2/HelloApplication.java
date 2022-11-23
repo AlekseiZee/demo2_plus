@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import persistence.entity.Angle;
 import persistence.repository.AngleJpaRepository;
 
 public class HelloApplication extends Application {
@@ -62,7 +63,7 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+//        launch();
     	/*LoadDriver.load();
     	LoadDriver lD = new LoadDriver();
     	Connection con = lD.getConnection();
@@ -76,6 +77,9 @@ public class HelloApplication extends Application {
 //        pointB.setVangle(17.85389);
 //        angleJDBCDAO.add(pointB);
     	
-//    	SoupJpaRepository.testDetachedEntity();
+//    	System.out.println(AngleJpaRepository.read(1L));
+    	Angle angle = AngleJpaRepository.create();
+    	System.out.println(angle);
+    	AngleJpaRepository.deleteByEntity(angle);
     }
 }

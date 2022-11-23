@@ -405,7 +405,6 @@ public class PageController {
      * Считываем путь к файлу
      */
     private void getPath() {
-    	System.out.println(AngleJpaRepository.find(1L));
         Pattern pattern = Pattern.compile("([a-zA-Z]\\:)\\\\([\\w-]+\\\\)*\\w([\\w-.])+");
         Matcher matcher = pattern.matcher(fieldPath.getText());
         if (matcher.matches()) {
