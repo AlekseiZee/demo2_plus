@@ -19,7 +19,9 @@ public enum PersistenceManager {
 	}
 
 	public void close() {
-		emfactory.close();
+		if (emfactory!=null) {
+			emfactory.close();
+		}
 	}
 }
 
