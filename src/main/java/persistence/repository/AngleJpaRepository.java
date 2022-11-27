@@ -1,17 +1,19 @@
 package persistence.repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.demo2.PersistenceManager;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import persistence.entity.Angle;
 import persistence.entity.Anglepair;
-
+/**
+ * Клас для запросов SQL (в котором каждый метод равен одной команде SQL)
+ * @author Home
+ *
+ */
 public class AngleJpaRepository {
-
+// Считываем entity по ID. В EntityManager заложен код поиска ID
 	public static Angle read(Long id) {
 		EntityManager em = null;
 		try {
@@ -32,7 +34,10 @@ public class AngleJpaRepository {
 //		transaction.commit(); // em.flush()
 //		em.close();
 	}
-	
+	/**
+	 *  Записывает entity. Делается через транзакцию.
+	 * @return
+	 */
 	public static Angle create() {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
@@ -48,8 +53,8 @@ public class AngleJpaRepository {
 			transaction = em.getTransaction();
 			transaction.begin();
 			em.persist(angle);
-			em.flush();
-			transaction.commit();
+			em.flush(); // отправляем в базу все что сделали
+			transaction.commit(); // завершили транзакцию
 			return angle;
 		} catch (Exception e) {
 			try{
@@ -67,13 +72,15 @@ public class AngleJpaRepository {
 			}
 		}		
 	}
-
+/**
+ * Создаем сразу партию значений Angle. Список значений типа <Angle> 
+ * @param quantity
+ */
 	public static void createBatch(int quantity) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
 		try {
 			em = PersistenceManager.INSTANCE.getEntityManager();
-			List<Angle> l = new ArrayList<Angle>();
 			Anglepair anglepair = em.find(Anglepair.class, 12L);
 			transaction = em.getTransaction();
 			transaction.begin();
@@ -83,12 +90,10 @@ public class AngleJpaRepository {
 				angle.setHangle(1.001);
 				angle.setVangle(2.002);
 				em.persist(angle);
-				l.add(angle);
 			}
 			em.flush();
 			transaction.commit();
 			
-//			l.forEach(a -> System.out.println("createBatch() > " + a));
 		} catch (Exception e) {
 			try{
 				if (transaction!=null) {
@@ -104,19 +109,22 @@ public class AngleJpaRepository {
 			}
 		}		
 	}
-	
+	/**
+	 * Удаляет сущность из базы 
+	 * @param angle
+	 */
 	public static void deleteByEntity(Angle angle) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
 		try {
 			em = PersistenceManager.INSTANCE.getEntityManager();
 //			System.out.println("deleteByEntity() > angle entity is managed before merging - " + em.contains(angle));
-			angle = em.merge(angle);
+			angle = em.merge(angle); //добавляем отделенную сущность в контекст 
 //			System.out.println("deleteByEntity() > angle entity is managed after merging - " + em.contains(angle));
 			transaction = em.getTransaction();
 			transaction.begin();
-			em.remove(angle);
-			em.flush();
+			em.remove(angle); // помечаем сущность, как удаленную из базы данных (уще не удалена)
+			em.flush(); // удаляется из базы
 			transaction.commit();
 
 		} catch (Exception e) {
@@ -134,7 +142,10 @@ public class AngleJpaRepository {
 			}
 		}
 	}
-	
+	/**
+	 * Удалить сущность с помощью запроса SQL(расширенного JPA. JPQL)
+	 * @param id
+	 */
 	public static void deleteByIdWithJPQL(Long id) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
@@ -142,8 +153,9 @@ public class AngleJpaRepository {
 			em = PersistenceManager.INSTANCE.getEntityManager();
 			transaction = em.getTransaction();
 			transaction.begin();
-			em.createQuery("DELETE FROM Angle a WHERE a.id = :id")
-				.setParameter("id", id).executeUpdate();
+			Query q = em.createQuery("DELETE FROM Angle a WHERE a.id = :id");
+				q.setParameter("id", id);
+				q.executeUpdate();
 			transaction.commit();
 
 		} catch (Exception e) {
@@ -161,7 +173,10 @@ public class AngleJpaRepository {
 			}
 		}
 	}
-	
+	/**
+	 * Метод удаления с помощью операции из EntityManager
+	 * @param id
+	 */
 	public static void deleteByIdViaPersistenceContext(Long id) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
@@ -195,7 +210,6 @@ public class AngleJpaRepository {
 		EntityTransaction transaction = null;
 		try {
 			em = PersistenceManager.INSTANCE.getEntityManager();
-			Angle angle = em.find(Angle.class, id);
 			transaction = em.getTransaction();
 			transaction.begin();
 			em.createNamedQuery("Angle.deleteById").setParameter("id", id).executeUpdate();
