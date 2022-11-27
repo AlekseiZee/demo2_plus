@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 
 
@@ -16,7 +17,10 @@ import jakarta.persistence.NamedQuery;
  * 
  */
 @Entity
-@NamedQuery(name="Angle.findAll", query="SELECT a FROM Angle a")
+@NamedQueries({
+	@NamedQuery(name="Angle.findAll", query="SELECT a FROM Angle a"),
+	@NamedQuery(name="Angle.deleteById", query="DELETE FROM Angle a where a.id = :id")
+})
 public class Angle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
