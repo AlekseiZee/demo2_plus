@@ -1,5 +1,8 @@
 package persistence.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.demo2.PersistenceManager;
 
 import jakarta.persistence.EntityManager;
@@ -64,15 +67,52 @@ public class AngleJpaRepository {
 			}
 		}		
 	}
+
+	public static void createBatch(int quantity) {
+		EntityManager em = null;
+		EntityTransaction transaction = null;
+		try {
+			em = PersistenceManager.INSTANCE.getEntityManager();
+			List<Angle> l = new ArrayList<Angle>();
+			Anglepair anglepair = em.find(Anglepair.class, 12L);
+			transaction = em.getTransaction();
+			transaction.begin();
+			for (int i=0; i<quantity; i++) {
+				Angle angle = new Angle();
+				angle.setAnglepair(anglepair);
+				angle.setHangle(1.001);
+				angle.setVangle(2.002);
+				em.persist(angle);
+				l.add(angle);
+			}
+			em.flush();
+			transaction.commit();
+			
+//			l.forEach(a -> System.out.println("createBatch() > " + a));
+		} catch (Exception e) {
+			try{
+				if (transaction!=null) {
+					transaction.rollback();
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace(System.out);
+			}
+			e.printStackTrace(System.out);
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}		
+	}
 	
 	public static void deleteByEntity(Angle angle) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
 		try {
 			em = PersistenceManager.INSTANCE.getEntityManager();
-			System.out.println("deleteByEntity() > angle entity is managed before merging - " + em.contains(angle));
+//			System.out.println("deleteByEntity() > angle entity is managed before merging - " + em.contains(angle));
 			angle = em.merge(angle);
-			System.out.println("deleteByEntity() > angle entity is managed after merging - " + em.contains(angle));
+//			System.out.println("deleteByEntity() > angle entity is managed after merging - " + em.contains(angle));
 			transaction = em.getTransaction();
 			transaction.begin();
 			em.remove(angle);
@@ -122,7 +162,7 @@ public class AngleJpaRepository {
 		}
 	}
 	
-	public static void deleteByIdViaPErsistenceContext(Long id) {
+	public static void deleteByIdViaPersistenceContext(Long id) {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
 		try {
@@ -149,4 +189,33 @@ public class AngleJpaRepository {
 			}
 		}
 	}
+	
+	public static void deleteByIdViaNamedQuery(Long id) {
+		EntityManager em = null;
+		EntityTransaction transaction = null;
+		try {
+			em = PersistenceManager.INSTANCE.getEntityManager();
+			Angle angle = em.find(Angle.class, id);
+			transaction = em.getTransaction();
+			transaction.begin();
+			em.createNamedQuery("Angle.deleteById").setParameter("id", id).executeUpdate();
+			em.flush();
+			transaction.commit();
+
+		} catch (Exception e) {
+			try{
+				if (transaction!=null) {
+					transaction.rollback();
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace(System.out);
+			}
+			e.printStackTrace(System.out);
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
 }
