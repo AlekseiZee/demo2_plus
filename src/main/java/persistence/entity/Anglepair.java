@@ -1,8 +1,10 @@
 package persistence.entity;
 
+
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,13 +29,14 @@ public class Anglepair implements Serializable {
 	private long id;
 
 	//bi-directional many-to-one association to Angle
-	@OneToMany(mappedBy="anglepair")
+	@OneToMany(mappedBy="anglepair",cascade = CascadeType.PERSIST)
 	private List<Angle> angles;
 
 	//bi-directional many-to-one association to Point
 	@ManyToOne
 	@JoinColumn(name="Id_Point")
 	private Point point;
+
 
 	public Anglepair() {
 	}
@@ -72,12 +75,7 @@ public class Anglepair implements Serializable {
 		return this.point;
 	}
 
-	public void setPoint(Point point) {
-		this.point = point;
-	}
-
-	@Override
-	public String toString() {
-		return "Anglepair [id=" + id + ", angles=" + angles + ", point.id=" + point.getId() + "]";
+	public void setPoint(Point point1) {
+		this.point = point1;
 	}
 }

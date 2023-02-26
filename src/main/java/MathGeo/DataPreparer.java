@@ -184,7 +184,7 @@ public class DataPreparer {
     }
 
     /**
-     * Метод, который читает файл и формирует коллекцию данных с прибора.
+     * !!!!!!!!Метод, который читает файл и формирует коллекцию данных с прибора.
      */
     public void buildInputData() throws IOException, DateIsNotReadyException {
         BufferedReader buffer = new BufferedReader(

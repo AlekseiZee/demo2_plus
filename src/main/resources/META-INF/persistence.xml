@@ -7,9 +7,10 @@
 	<persistence-unit name="eclipselink">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>persistence.entity.Angle</class>
-		<class>persistence.entity.Anglepair</class>
-		<class>persistence.entity.Object</class>
 		<class>persistence.entity.Point</class>
+		<class>persistence.entity.Anglepair</class>
+		<class>persistence.entity.Instance</class>
+		<class>persistence.entity.Object</class>
 
 <!-- https://www.eclipse.org/eclipselink/documentation/4.0/jpa/extensions/toc.htm -->
 		<properties>

@@ -8,7 +8,7 @@ import jakarta.persistence.Query;
 import persistence.entity.Angle;
 import persistence.entity.Anglepair;
 /**
- * Клас для запросов SQL (в котором каждый метод равен одной команде SQL)
+ * Клас для запросов SQL (в котором каждый метод - это одна команда SQL запроса)
  * @author Home
  *
  */
